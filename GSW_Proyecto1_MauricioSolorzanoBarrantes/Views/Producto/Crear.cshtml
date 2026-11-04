@@ -1,0 +1,75 @@
+﻿
+@model GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.Producto
+
+@{
+    ViewBag.Title = "Registrar producto";
+}
+
+<main class="container">
+
+    <section>
+        <header>
+            <h2>Registrar producto</h2>
+            <p>Ingresa la información del nuevo producto.</p>
+        </header>
+
+        <form action="@Url.Action("Crear", "Producto")" method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="Nombre">Nombre del producto</label>
+                <input type="text"
+                       id="Nombre"
+                       name="Nombre"
+                       class="form-control"
+                       maxlength="100"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Descripcion">Descripción</label>
+                <textarea id="Descripcion"
+                          name="Descripcion"
+                          class="form-control"
+                          rows="4"
+                          maxlength="500"
+                          required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Precio">Precio</label>
+                <input type="number"
+                       id="Precio"
+                       name="Precio"
+                       class="form-control"
+                       step="0.01"
+                       min="0.01"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox"
+                       id="Disponible"
+                       name="Disponible"
+                       value="true"
+                       checked />
+
+                <label for="Disponible">Producto disponible</label>
+            </div>
+
+            <br />
+
+            <button type="submit" class="btn btn-primary">
+                Guardar producto
+            </button>
+
+            <a href="@Url.Action("Index", "Producto")"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+    </section>
+
+</main>

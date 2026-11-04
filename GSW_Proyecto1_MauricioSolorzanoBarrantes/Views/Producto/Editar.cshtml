@@ -1,0 +1,81 @@
+﻿
+@model GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.Producto
+
+@{
+    ViewBag.Title = "Editar producto";
+}
+
+<main class="container">
+
+    <section>
+        <header>
+            <h2>Editar producto</h2>
+            <p>Modifica la información del producto seleccionado.</p>
+        </header>
+
+        <form action="@Url.Action("Editar", "Producto")" method="post">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden"
+                   name="IdProducto"
+                   value="@Model.IdProducto" />
+
+            <div class="form-group">
+                <label for="Nombre">Nombre del producto</label>
+                <input type="text"
+                       id="Nombre"
+                       name="Nombre"
+                       class="form-control"
+                       value="@Model.Nombre"
+                       maxlength="100"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Descripcion">Descripción</label>
+                <textarea id="Descripcion"
+                          name="Descripcion"
+                          class="form-control"
+                          rows="4"
+                          maxlength="500"
+                          required>@Model.Descripcion</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Precio">Precio</label>
+                <input type="number"
+                       id="Precio"
+                       name="Precio"
+                       class="form-control"
+                       value="@Model.Precio"
+                       step="0.01"
+                       min="0.01"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox"
+                       id="Disponible"
+                       name="Disponible"
+                       value="true"
+                       @(Model.Disponible ? "checked" : "") />
+
+                <label for="Disponible">Producto disponible</label>
+            </div>
+
+            <br />
+
+            <button type="submit" class="btn btn-primary">
+                Guardar cambios
+            </button>
+
+            <a href="@Url.Action("Index", "Producto")"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+    </section>
+
+</main>
