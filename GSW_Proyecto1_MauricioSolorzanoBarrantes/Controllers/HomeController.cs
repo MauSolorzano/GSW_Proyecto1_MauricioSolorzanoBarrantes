@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GSW_Proyecto1_MauricioSolorzanoBarrantes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,25 @@ namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult ProbarConexion()
+        {
+            try
+            {
+                bool conectado = ConexionBD.ProbarConexion();
+
+                if (conectado)
+                {
+                    return Content("Conexión con SQL Server exitosa.");
+                }
+
+                return Content("No se pudo establecer la conexión.");
+            }
+            catch (Exception ex)
+            {
+                return Content("Error de conexión: " + ex.Message);
+            }
         }
     }
 }
