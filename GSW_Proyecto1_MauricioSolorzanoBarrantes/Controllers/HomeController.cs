@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using GSW_Proyecto1_MauricioSolorzanoBarrantes.Data;
 namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Controllers
 {
     public class HomeController : Controller
@@ -45,6 +45,9 @@ namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Controllers
             {
                 return Content("Error de conexión: " + ex.Message);
             }
+
+
         }
+       
     }
 }
