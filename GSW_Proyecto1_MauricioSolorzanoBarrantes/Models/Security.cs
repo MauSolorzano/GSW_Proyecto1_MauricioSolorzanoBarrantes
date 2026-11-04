@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Models
 {
-    public class Seguridad
+    public class Security
     {
         public static string GenerarHash(string contrasena)
         {

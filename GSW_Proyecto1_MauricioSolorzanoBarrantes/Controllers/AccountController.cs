@@ -53,7 +53,7 @@ namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Controllers
                         // Obtenemos el hash de la contraseña almacenada en la base de datos
                         string hash = lector["Contrasena"].ToString();
                         // Verificamos si la contraseña proporcionada coincide con el hash almacenado
-                        if (Seguridad.VerificarContrasena(contrasena, hash))
+                        if (Security.VerificarContrasena(contrasena, hash))
                         {
                             // Si la contraseña es correcta, almacenamos la información del usuario en la sesión
                             Session["IdUsuario"] = lector["IdUsuario"];

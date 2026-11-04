@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Models
 {
-    public class Usuario
+    public class User
     {
         public int IdUsuario { get; set; }
 

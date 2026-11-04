@@ -133,5 +133,43 @@ namespace GSW_Proyecto1_MauricioSolorzanoBarrantes.Data
                 return comando.ExecuteNonQuery() > 0;
             }
         }
+        //Obtener los productos que estan disponibles en la base de datos
+        public List<Producto> ObtenerDisponibles()
+        {
+            // Crear una lista para almacenar los productos disponibles
+            List<Producto> productos = new List<Producto>();
+            // Establecer la conexión a la base de datos y ejecutar la consulta
+            using (SqlConnection conexion = ConexionBD.ObtenerConexion())
+            {
+                // Consulta SQL para obtener los productos disponibles ordenados por IdProducto descendente
+                string consulta = @"SELECT IdProducto, Nombre, Descripcion,
+                                   Precio, Disponible, FechaRegistro
+                            FROM Productos
+                            WHERE Disponible = 1
+                            ORDER BY IdProducto DESC";
+                // Crear un comando SQL con la consulta
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+
+                conexion.Open();
+                // Ejecutar la consulta y leer los resultados
+                SqlDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Producto producto = new Producto();
+
+                    producto.IdProducto = (int)lector["IdProducto"];
+                    producto.Nombre = lector["Nombre"].ToString();
+                    producto.Descripcion = lector["Descripcion"].ToString();
+                    producto.Precio = (decimal)lector["Precio"];
+                    producto.Disponible = (bool)lector["Disponible"];
+                    producto.FechaRegistro = (DateTime)lector["FechaRegistro"];
+                    // Agregar el producto a la lista de productos disponibles
+                    productos.Add(producto);
+                }
+            }
+            // Devolver la lista de productos disponibles obtenida de la base de datos
+            return productos;
+        }
     }
 }

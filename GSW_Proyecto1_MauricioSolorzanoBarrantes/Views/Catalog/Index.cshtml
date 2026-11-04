@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.Producto>
+
+@{
+    ViewBag.Title = "Catálogo de productos";
+}
+
+<main class="container">
+    <section>
+        <header>
+            <h2>Catálogo de productos</h2>
+            <p>Conoce los productos disponibles de nuestra asociación.</p>
+        </header>
+
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var producto in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <article class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">@producto.Nombre</h3>
+
+                                <p class="card-text">
+                                    @producto.Descripcion
+                                </p>
+
+                                <p class="card-text">
+                                    <strong>Precio:</strong>
+                                    ₡@producto.Precio.ToString("N2")
+                                </p>
+
+                                <p class="text-success">
+                                    Disponible
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p>No hay productos disponibles en este momento.</p>
+                </div>
+            }
+        </div>
+    </section>
+</main>
