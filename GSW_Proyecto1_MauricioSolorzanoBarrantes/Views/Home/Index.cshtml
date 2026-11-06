@@ -1,33 +1,62 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Inicio";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+<main class="pagina-inicio">
+
+    <section class="presentacion">
+        <h1>Bienvenidos a la Asociación de Emprendedoras</h1>
+
+        <p>
+            Un espacio para descubrir productos, apoyar el talento
+            y fortalecer los emprendimientos de nuestra comunidad.
+        </p>
+
+        <a href="@Url.Action("Index", "Catalog")" class="boton-principal">
+            Explorar catálogo
+        </a>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+    <section class="seccion-opciones">
+        <h2>Conoce nuestra plataforma</h2>
+
+        <div class="contenedor-tarjetas">
+
+            <article class="tarjeta-inicio">
+                <h3>Catálogo de productos</h3>
+                <p>
+                    Descubre los productos disponibles y conoce
+                    las diferentes opciones que ofrecen nuestras emprendedoras.
+                </p>
+                <a href="@Url.Action("Index", "Catalog")" class="boton-tarjeta">
+                    Ver catálogo
+                </a>
+            </article>
+
+            <article class="tarjeta-inicio">
+                <h3>Solicitudes de compra</h3>
+                <p>
+                    Si encuentras un producto de tu interés,
+                    puedes enviar una solicitud de compra fácilmente.
+                </p>
+                <a href="@Url.Action("Index", "Catalog")" class="boton-tarjeta">
+                    Solicitar producto
+                </a>
+            </article>
+
+            <article class="tarjeta-inicio">
+                <h3>Administración</h3>
+                <p>
+                    Gestiona los productos publicados y consulta
+                    las solicitudes recibidas por la asociación.
+                </p>
+                <a href="@Url.Action("Login", "Account")" class="boton-tarjeta">
+                    Acceso administrativo
+                </a>
+            </article>
+
+        </div>
+    </section>
+
 </main>

@@ -18,3 +18,140 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Barra de navegación */
+.barra-navegacion {
+    background-color: #17365D;
+    padding: 18px 0;
+}
+
+.navegacion-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nombre-asociacion {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.enlaces-navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+    .enlaces-navegacion a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+        .enlaces-navegacion a:hover {
+            color: #B9D8F0;
+        }
+
+/* Página de inicio */
+.pagina-inicio {
+    padding: 25px 0;
+}
+
+.presentacion {
+    background-color: #EAF2F8;
+    text-align: center;
+    padding: 55px 25px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+    .presentacion h1 {
+        color: #17365D;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .presentacion p {
+        color: #444444;
+        font-size: 17px;
+        margin-bottom: 25px;
+    }
+
+.boton-principal,
+.boton-tarjeta {
+    display: inline-block;
+    background-color: #2878B5;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+    .boton-principal:hover,
+    .boton-tarjeta:hover {
+        background-color: #17365D;
+        color: #ffffff;
+    }
+
+.seccion-opciones h2 {
+    color: #17365D;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta-inicio {
+    flex: 1;
+    min-width: 230px;
+    background-color: #ffffff;
+    border: 1px solid #D5E1EC;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+    .tarjeta-inicio h3 {
+        color: #17365D;
+        margin-bottom: 15px;
+    }
+
+    .tarjeta-inicio p {
+        color: #555555;
+        min-height: 75px;
+    }
+/* Pie de página */
+.footer-asociacion {
+    background-color: #EAF2F8;
+    color: #17365D;
+    padding: 30px 0 15px;
+    margin-top: 40px;
+    border-top: 1px solid #D5E1EC;
+}
+
+    .footer-asociacion h4 {
+        color: #17365D;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .footer-asociacion p {
+        color: #526579;
+    }
+
+    .footer-asociacion hr {
+        border-color: #C5D5E4;
+    }
+
+.footer-derechos {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 0;
+}

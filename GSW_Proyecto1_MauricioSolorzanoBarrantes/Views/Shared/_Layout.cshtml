@@ -1,40 +1,82 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+
+    <title>@ViewBag.Title - Asociación de Emprendedoras</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+
+    @{
+        bool autenticado = Session["Autenticado"] != null &&
+                           (bool)Session["Autenticado"];
+    }
+
+    <nav class="barra-navegacion">
+        <div class="container navegacion-contenido">
+
+            <a class="nombre-asociacion"
+               href="@Url.Action("Index", "Home")">
+                Asociación de Emprendedoras
+            </a>
+
+            <div class="enlaces-navegacion">
+
+                <a href="@Url.Action("Index", "Home")">Inicio</a>
+
+                <a href="@Url.Action("Index", "Catalog")">Catálogo</a>
+
+                @if (autenticado)
+                {
+                    <a href="@Url.Action("Index", "Producto")">Productos</a>
+
+                    <a href="@Url.Action("Index", "PurchaseRequest")">Solicitudes</a>
+
+                    <a href="@Url.Action("Logout", "Account")">Cerrar sesión</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")">Administración</a>
+                }
+
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
     </div>
+
+    <footer class="footer-asociacion">
+        <div class="container">
+
+            <h4>Asociación de Emprendedoras</h4>
+
+            <p>
+                Impulsando el talento, la creatividad y el crecimiento
+                de los emprendimientos de nuestra comunidad.
+            </p>
+
+            <hr />
+
+            <p class="footer-derechos">
+                &copy; @DateTime.Now.Year Asociación de Emprendedoras.
+                Todos los derechos reservados.
+            </p>
+
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
