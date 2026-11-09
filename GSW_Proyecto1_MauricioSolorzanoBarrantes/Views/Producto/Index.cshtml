@@ -1,0 +1,83 @@
+﻿
+@model IEnumerable<GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.Producto>
+
+@{
+    ViewBag.Title = "Gestión de productos";
+}
+
+<main class="pagina-productos">
+
+    <section class="encabezado-seccion">
+        <div>
+            <h1>Gestión de productos</h1>
+            <p>Consulta y administra los productos de la asociación.</p>
+        </div>
+
+        <a href="@Url.Action("Crear", "Producto")" class="boton-principal">
+            Registrar producto
+        </a>
+    </section>
+
+    <section class="contenedor-tabla">
+
+        <div class="encabezado-tabla">
+            <h2>Productos registrados</h2>
+        </div>
+
+        <div class="table-responsive">
+            <table class="tabla-productos">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Disponibilidad</th>
+                        <th>Fecha de registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var producto in Model)
+                        {
+                            <tr>
+                                <td class="nombre-producto">@producto.Nombre</td>
+                                <td>@producto.Descripcion</td>
+                                <td>₡ @producto.Precio.ToString("N2")</td>
+                                <td>
+                                    @if (producto.Disponible)
+                                    {
+                                        <span class="estado-disponible">Disponible</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="estado-no-disponible">No disponible</span>
+                                    }
+                                </td>
+                                <td>@producto.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a href="@Url.Action("Editar", "Producto", new { id = producto.IdProducto })"
+                                       class="boton-editar">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="mensaje-vacio">
+                                No hay productos registrados.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+</main>

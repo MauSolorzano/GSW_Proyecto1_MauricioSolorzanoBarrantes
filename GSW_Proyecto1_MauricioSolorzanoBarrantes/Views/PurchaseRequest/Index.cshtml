@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.PurchaseRequest>
+
+@{
+    ViewBag.Title = "Solicitudes de compra";
+}
+
+<main class="container">
+    <section>
+        <header class="mb-4">
+            <h2>Solicitudes de compra</h2>
+            <p>Consulte y administre las solicitudes recibidas.</p>
+        </header>
+
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert alert-info">
+                @TempData["Mensaje"]
+            </div>
+        }
+
+        @if (!Model.Any())
+        {
+            <p>No hay solicitudes de compra registradas.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>N.º</th>
+                            <th>Producto</th>
+                            <th>Solicitante</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Actualizar</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var solicitud in Model)
+                        {
+                            <tr>
+                                <td>@solicitud.IdSolicitud</td>
+                                <td>@solicitud.NombreProducto</td>
+                                <td>@solicitud.NombreSolicitante</td>
+                                <td>@solicitud.Correo</td>
+                                <td>@solicitud.Telefono</td>
+                                <td>@solicitud.FechaSolicitud.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@solicitud.Estado</td>
+                                <td>
+                                    <form method="post"
+                                          action="@Url.Action("ActualizarEstado", "PurchaseRequest")">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <input type="hidden"
+                                               name="idSolicitud"
+                                               value="@solicitud.IdSolicitud" />
+
+                                        <select name="estado" class="form-select mb-2">
+                                            <option value="Pendiente"
+                                                    selected="@(solicitud.Estado == "Pendiente")">
+                                                Pendiente
+                                            </option>
+
+                                            <option value="En proceso"
+                                                    selected="@(solicitud.Estado == "En proceso")">
+                                                En proceso
+                                            </option>
+
+                                            <option value="Completada"
+                                                    selected="@(solicitud.Estado == "Completada")">
+                                                Completada
+                                            </option>
+
+                                            <option value="Cancelada"
+                                                    selected="@(solicitud.Estado == "Cancelada")">
+                                                Cancelada
+                                            </option>
+                                        </select>
+
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            Guardar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </section>
+</main>

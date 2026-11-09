@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Solicitud registrada";
+}
+
+<main class="container">
+    <section class="text-center mt-5">
+        <div class="card">
+            <div class="card-body">
+
+                <h2>¡Solicitud registrada!</h2>
+
+                <p>
+                    Su solicitud de compra fue recibida correctamente.
+                </p>
+
+                <p>
+                    La asociación revisará su solicitud y se pondrá en contacto
+                    con usted para coordinar los siguientes pasos.
+                </p>
+
+                <a href="@Url.Action("Index", "Catalog")"
+                   class="btn btn-primary">
+                    Volver al catálogo
+                </a>
+
+            </div>
+        </div>
+    </section>
+</main>

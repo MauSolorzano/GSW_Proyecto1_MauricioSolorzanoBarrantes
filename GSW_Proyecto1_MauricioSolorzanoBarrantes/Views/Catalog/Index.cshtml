@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.Producto>
+
+@{
+    ViewBag.Title = "Catálogo de productos";
+}
+
+<main class="pagina-catalogo">
+
+    <section class="encabezado-catalogo">
+        <h1>Catálogo de productos</h1>
+        <p>
+            Conoce los productos disponibles y apoya el talento
+            de las emprendedoras de nuestra comunidad.
+        </p>
+    </section>
+
+    <section class="contenedor-catalogo">
+
+        <div class="tarjetas-catalogo">
+
+            @if (Model != null && Model.Any())
+            {
+                foreach (var producto in Model)
+                {
+                    <article class="tarjeta-producto">
+
+                        <div class="contenido-producto">
+
+                            <h2>@producto.Nombre</h2>
+
+                            <p class="descripcion-catalogo">
+                                @producto.Descripcion
+                            </p>
+
+                            <p class="precio-catalogo">
+                                ₡@producto.Precio.ToString("N2")
+                            </p>
+
+                            <span class="estado-catalogo">
+                                Disponible
+                            </span>
+
+                            <a href="@Url.Action("Crear", "PurchaseRequest", new { id = producto.IdProducto })"
+                               class="boton-solicitar">
+                                Solicitar producto
+                            </a>
+
+                        </div>
+
+                    </article>
+                }
+            }
+            else
+            {
+                <div class="mensaje-catalogo-vacio">
+                    <h2>No hay productos disponibles</h2>
+                    <p>
+                        En este momento no tenemos productos publicados.
+                        Te invitamos a consultar nuevamente más adelante.
+                    </p>
+                </div>
+            }
+
+        </div>
+
+    </section>
+
+</main>

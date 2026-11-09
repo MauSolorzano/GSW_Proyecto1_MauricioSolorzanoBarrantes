@@ -1,0 +1,79 @@
+﻿
+@model GSW_Proyecto1_MauricioSolorzanoBarrantes.Models.PurchaseRequest
+
+@{
+    ViewBag.Title = "Solicitar producto";
+}
+
+<main class="container">
+    <section>
+        <header>
+            <h2>Solicitar producto</h2>
+            <p>Complete sus datos para enviar una solicitud de compra.</p>
+        </header>
+
+        <div class="card">
+            <div class="card-body">
+
+                <h3>@ViewBag.NombreProducto</h3>
+
+                <p>
+                    <strong>Precio:</strong>
+                    ₡@Convert.ToDecimal(ViewBag.Precio).ToString("N2")
+                </p>
+
+                @using (Html.BeginForm("Crear", "PurchaseRequest", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden"
+                           name="IdProducto"
+                           value="@Model.IdProducto" />
+
+                    <div class="mb-3">
+                        <label for="NombreSolicitante">Nombre completo:</label>
+                        <input type="text"
+                               id="NombreSolicitante"
+                               name="NombreSolicitante"
+                               class="form-control"
+                               maxlength="100"
+                               required
+                               value="@Model.NombreSolicitante" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Correo">Correo electrónico:</label>
+                        <input type="email"
+                               id="Correo"
+                               name="Correo"
+                               class="form-control"
+                               maxlength="150"
+                               required
+                               value="@Model.Correo" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Telefono">Teléfono:</label>
+                        <input type="tel"
+                               id="Telefono"
+                               name="Telefono"
+                               class="form-control"
+                               maxlength="20"
+                               required
+                               value="@Model.Telefono" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Enviar solicitud
+                    </button>
+
+                    <a href="@Url.Action("Index", "Catalog")"
+                       class="btn btn-secondary">
+                        Cancelar
+                    </a>
+                }
+
+            </div>
+        </div>
+    </section>
+</main>
