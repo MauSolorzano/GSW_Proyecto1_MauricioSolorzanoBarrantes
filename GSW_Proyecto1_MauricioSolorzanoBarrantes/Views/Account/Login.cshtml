@@ -3,45 +3,59 @@
     ViewBag.Title = "Iniciar sesión";
 }
 
-<main class="container">
+<main class="pagina-login">
 
-    <section class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <header>
-                <h2>Iniciar sesión</h2>
-                <p class="lead">Ingrese su correo electrónico y contraseña para acceder a su cuenta.</p>
-            </header>
+    <section class="tarjeta-login">
+
+        <header class="encabezado-login">
+            <h1>Administración</h1>
+            <p>Asociación de Emprendedoras</p>
+        </header>
+
+        <div class="contenido-login">
+
+            <h2>Iniciar sesión</h2>
+
+            <p class="texto-login">
+                Ingrese sus credenciales para acceder a la plataforma.
+            </p>
 
             @using (Html.BeginForm("Login", "Account", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-group">
-                    <label>Correo electrónico</label>
-                    <input type="email" name="correo"
-                           class="form-control" required />
+                <div class="campo-login">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email"
+                           id="correo"
+                           name="correo"
+                           class="form-control"
+                           placeholder="Ingrese su correo electrónico"
+                           required />
                 </div>
 
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" name="contrasena"
-                           class="form-control" required />
+                <div class="campo-login">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password"
+                           id="contrasena"
+                           name="contrasena"
+                           class="form-control"
+                           placeholder="Ingrese su contraseña"
+                           required />
                 </div>
 
-                <br />
+                if (ViewBag.Mensaje != null)
+                {
+                    <p class="mensaje-login">@ViewBag.Mensaje</p>
+                }
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="boton-login">
                     Ingresar
                 </button>
             }
 
-            @if (ViewBag.Mensaje != null)
-            {
-                <footer>
-                    <p class="text-danger">@ViewBag.Mensaje</p>
-                </footer>
-            }
         </div>
-    </section>
-</main>
 
+    </section>
+
+</main>

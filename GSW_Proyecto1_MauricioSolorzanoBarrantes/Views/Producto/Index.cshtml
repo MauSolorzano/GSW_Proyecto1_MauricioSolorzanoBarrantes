@@ -5,26 +5,27 @@
     ViewBag.Title = "Gestión de productos";
 }
 
-<main class="container">
+<main class="pagina-productos">
 
-    <section>
-        <header>
-            <h2>Gestión de productos</h2>
+    <section class="encabezado-seccion">
+        <div>
+            <h1>Gestión de productos</h1>
             <p>Consulta y administra los productos de la asociación.</p>
-        </header>
+        </div>
 
-        <p>
-            @Html.ActionLink(
-                     "Registrar producto",
-                     "Crear",
-                     "Producto",
-                     null,
-                     new { @class = "btn btn-primary" }
-                 )
-        </p>
+        <a href="@Url.Action("Crear", "Producto")" class="boton-principal">
+            Registrar producto
+        </a>
+    </section>
+
+    <section class="contenedor-tabla">
+
+        <div class="encabezado-tabla">
+            <h2>Productos registrados</h2>
+        </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="tabla-productos">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -42,27 +43,25 @@
                         foreach (var producto in Model)
                         {
                             <tr>
-                                <td>@producto.Nombre</td>
+                                <td class="nombre-producto">@producto.Nombre</td>
                                 <td>@producto.Descripcion</td>
-                                <td>@producto.Precio.ToString("N2")</td>
+                                <td>₡ @producto.Precio.ToString("N2")</td>
                                 <td>
                                     @if (producto.Disponible)
                                     {
-                                        <span class="text-success">Disponible</span>
+                                        <span class="estado-disponible">Disponible</span>
                                     }
                                     else
                                     {
-                                        <span class="text-danger">No disponible</span>
+                                        <span class="estado-no-disponible">No disponible</span>
                                     }
                                 </td>
                                 <td>@producto.FechaRegistro.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    @Html.ActionLink(
-                                             "Editar",
-                                             "Editar",
-                                             new { id = producto.IdProducto },
-                                             new { @class = "btn btn-warning btn-sm" }
-                                         )
+                                    <a href="@Url.Action("Editar", "Producto", new { id = producto.IdProducto })"
+                                       class="boton-editar">
+                                        Editar
+                                    </a>
                                 </td>
                             </tr>
                         }
@@ -70,7 +69,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="6" class="text-center">
+                            <td colspan="6" class="mensaje-vacio">
                                 No hay productos registrados.
                             </td>
                         </tr>
@@ -78,6 +77,7 @@
                 </tbody>
             </table>
         </div>
+
     </section>
 
 </main>
